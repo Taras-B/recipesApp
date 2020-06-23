@@ -1,8 +1,9 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeEvery, call, put, delay } from "redux-saga/effects";
 
 import { actions } from "../actions/recipesActions";
 import { fetchRecipeData } from "../../api/api";
 import { SEARCH_RECIPES } from "../types";
+import { appActions } from "../actions/appActions";
 
 function* workerSearchRecipes(action: any) {
   try {
@@ -10,7 +11,9 @@ function* workerSearchRecipes(action: any) {
     if (data.count > 0) {
       yield put(actions.putRecipes(data.hits));
     } else {
-      console.log("not result");
+      yield put(appActions.showAlert("Нічого не знайдено"));
+      yield delay(3000, console.log("-------Delay 3 sec-------"));
+      yield put(appActions.hideAlert());
     }
     // debugger;
   } catch (e) {

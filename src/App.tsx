@@ -5,16 +5,20 @@ import { Recipes } from "./components/Recipes";
 import { actions } from "./stores/actions/recipesActions";
 import { useDispatch } from "react-redux";
 import SearchForm from "./components/SearchForm";
+// import { StylesProvider } from "@material-ui/core/styles";
 // import { RootState } from "./stores/redux-store";
 
 const SearchContainer = styled.div`
   background-color: red;
-  height: 5vh;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 `;
 
 function App() {
   const dispatch = useDispatch();
-  // const recipes = useSelector((state: any) => state.recipes);
 
   useEffect(() => {
     dispatch(actions.loadRecipes());
