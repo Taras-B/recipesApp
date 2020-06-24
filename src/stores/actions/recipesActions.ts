@@ -3,6 +3,11 @@ import { FETCH_RECIPES, PUT_RECIPES, SEARCH_RECIPES } from "../types";
 
 export type ActionsType = InferActionsTypes<typeof actions>;
 
+export type RecipeIngredientsT = {
+  text: string;
+  weight: number;
+};
+
 type RecipeT = {
   calories: number;
   cautions: Array<string>;
@@ -10,7 +15,8 @@ type RecipeT = {
   digest: Array<{}>;
   healthLabels: Array<string>;
   image: string;
-  ingredients: Array<{}>;
+  ingredients: Array<RecipeIngredientsT>;
+  ingredientLines: Array<string>;
   label: string;
   source: string;
   yield: number;

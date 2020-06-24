@@ -11,8 +11,8 @@ function* workerSearchRecipes(action: any) {
     if (data.count > 0) {
       yield put(actions.putRecipes(data.hits));
     } else {
-      yield put(appActions.showAlert("Нічого не знайдено"));
-      yield delay(3000, console.log("-------Delay 3 sec-------"));
+      yield put(appActions.showAlert("Нічого не знайдено. Введіть другу назву"));
+      yield delay(5000, console.log("-------Delay 5 sec-------"));
       yield put(appActions.hideAlert());
     }
     // debugger;

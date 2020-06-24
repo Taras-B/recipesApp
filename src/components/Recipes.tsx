@@ -3,18 +3,41 @@ import { useSelector } from "react-redux";
 import { RecipesDataT } from "../stores/actions/recipesActions";
 import { AppRootState } from "../stores/redux-store";
 import Recipe from "./Recipe";
+import styled from "styled-components";
 
 export const Recipes: React.FC = () => {
   //@ts-ignore
   const recipes = useSelector((state: AppRootState) => state.recipes.fetchRecipes);
+  const loading = useSelector((state: AppRootState) => state.app.loading);
 
-  if (recipes === undefined) return <div>loading</div>;
+  // FIXME:  - upload loader component
+  if (loading) return <h1>loading</h1>;
+
   return (
-    <div>
-      {recipes &&
-        recipes.map((r: RecipesDataT) => (
-          <Recipe key={r.recipe.totalWeight} imageRecipe={r.recipe.image} />
-        ))}
-    </div>
+    <RecipesContainer>
+      {recipes.map((r: RecipesDataT) => (
+        <Recipe
+          key={r.recipe.totalWeight}
+          label={r.recipe.label}
+          ingredients={r.recipe.ingredientLines}
+          imageRecipe={r.recipe.image}
+        />
+      ))}
+    </RecipesContainer>
   );
 };
+
+const RecipesContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  & .MuiCard-root {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
+  && .MuiPaper-root {
+    margin: 20px;
+    background-color: #979292;
+  }
+`;

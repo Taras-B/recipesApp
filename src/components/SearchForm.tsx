@@ -16,11 +16,11 @@ const SearchForm: React.FC<ISearchFormProps> = ({ searchRecipesForm }) => {
 
   const onSearchRecipeClick = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    searchRecipesForm(word);
+    searchRecipesForm(word.trim());
     setWord("");
   };
   return (
-    <div>
+    <>
       <form onSubmit={onSearchRecipeClick}>
         <InputTextField
           onChange={updateWord}
@@ -34,24 +34,30 @@ const SearchForm: React.FC<ISearchFormProps> = ({ searchRecipesForm }) => {
           Search
         </ButtonSearch>
       </form>
-    </div>
+    </>
   );
 };
 
 const InputTextField = styled(TextField)`
-  background-color: white;
-  width: 450px;
-  padding: 45px;
-  border-radius: 19px;
-  border-bottom: transparent;
-  margin: 100px;
-  & .MuiFilledInput-underline:before {
+  && {
+    background-color: white;
+    max-width: 450px;
+    width: 400px;
+    /* padding: 45px; */
+    border-radius: 19px;
     border-bottom: transparent;
+    margin: 10px;
+    & .MuiFilledInput-underline:before {
+      border-bottom: transparent;
+    }
+    @media (max-width: 768px) {
+      max-width: 200px;
+    }
   }
 `;
 
 const ButtonSearch = styled(Button)`
-  margin: 100px;
+  /* margin: 10px; */
 `;
 
 export default SearchForm;
