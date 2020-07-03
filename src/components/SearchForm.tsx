@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
 
-interface ISearchFormProps {
+export interface ISearchFormProps {
   searchRecipesForm(word: string): void;
 }
 
@@ -32,11 +32,16 @@ const SearchForm: React.FC<ISearchFormProps> = ({ searchRecipesForm }) => {
           name="searchWord"
           id="outlined-basic"
           label="Search Recipe"
+          placeholder="Search Recipe"
           variant="filled"
           value={word}
           // helperText="Incorrect entry."
         />
-        <ButtonSearch variant="contained" color="primary" type="submit">
+        <ButtonSearch
+          variant="contained"
+          color="primary"
+          type="submit"
+          data-testid="search-button">
           Search
         </ButtonSearch>
       </form>
