@@ -11,7 +11,7 @@ const Recipe: React.FC<IRecipeProps> = ({ imageRecipe, label, ingredients }) => 
   return (
     <>
       <Card style={{ maxWidth: "600px" }}>
-        <CardHeader title={label} subheader="September 14, 2016" />
+        <CardHeader title={label} />
         <CardMedia style={{ height: "350px" }} image={imageRecipe} title={label} />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="ul">

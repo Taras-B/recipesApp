@@ -73,7 +73,7 @@ const AlertFixed = styled(Alert)`
   bottom: 10px;
   left: 0;
   width: 500px;
-  animation: 5s ${fadeIn} ease-out;
+  animation: 6s ${fadeIn} ease-out;
 `;
 
 export default App;

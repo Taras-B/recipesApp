@@ -16,18 +16,24 @@ const SearchForm: React.FC<ISearchFormProps> = ({ searchRecipesForm }) => {
 
   const onSearchRecipeClick = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    searchRecipesForm(word.trim());
-    setWord("");
+    if (word.trim().length > 2) {
+      searchRecipesForm(word.trim());
+      setWord("");
+    } else {
+      console.log("check");
+    }
   };
   return (
     <>
       <form onSubmit={onSearchRecipeClick}>
         <InputTextField
           onChange={updateWord}
+          required
           name="searchWord"
           id="outlined-basic"
           label="Search Recipe"
           variant="filled"
+          value={word}
           // helperText="Incorrect entry."
         />
         <ButtonSearch variant="contained" color="primary" type="submit">
@@ -43,7 +49,6 @@ const InputTextField = styled(TextField)`
     background-color: white;
     max-width: 450px;
     width: 400px;
-    /* padding: 45px; */
     border-radius: 19px;
     border-bottom: transparent;
     margin: 10px;

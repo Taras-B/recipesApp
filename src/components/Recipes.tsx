@@ -4,14 +4,15 @@ import { RecipesDataT } from "../stores/actions/recipesActions";
 import { AppRootState } from "../stores/redux-store";
 import Recipe from "./Recipe";
 import styled from "styled-components";
+import { CircularProgress } from "@material-ui/core";
 
 export const Recipes: React.FC = () => {
   //@ts-ignore
   const recipes = useSelector((state: AppRootState) => state.recipes.fetchRecipes);
   const loading = useSelector((state: AppRootState) => state.app.loading);
 
-  // FIXME:  - upload loader component
-  if (loading) return <h1>loading</h1>;
+  // FIXME:  - add style center component
+  if (loading) return <CircularProgress />;
 
   return (
     <RecipesContainer>
