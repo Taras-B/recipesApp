@@ -2,26 +2,27 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import SearchForm from "./SearchForm";
 
-it("renders correctly", () => {
-  const { queryByTestId, queryByText } = render(
-    <SearchForm searchRecipesForm={() => {}} />
+it("renders correctly button and input", () => {
+  const requestSearch = jest.fn();
+
+  const { queryByTestId, queryByLabelText } = render(
+    <SearchForm searchRecipesForm={requestSearch} />
   );
 
   expect(queryByTestId("search-button")).toBeTruthy();
-  expect(queryByText("Search Recipe")).toBeTruthy();
+  expect(queryByLabelText(/Search Recipe/i)).toBeInTheDocument();
 });
 
 describe("input value", () => {
   it("update on change", () => {
-    const { queryByPlaceholderText } = render(
-      <SearchForm searchRecipesForm={() => {}} />
-    );
+    const requestSearch = jest.fn();
 
-    const searchInput = queryByPlaceholderText("Search Recipe");
-    //@ts-ignore
+    const { queryByLabelText } = render(<SearchForm searchRecipesForm={requestSearch} />);
+
+    const searchInput = queryByLabelText(/Search Recipe/i) as HTMLElement;
     fireEvent.change(searchInput, { target: { value: "banana" } });
 
-    expect(searchInput?.value).toBe("banana");
+    expect(searchInput.value).toBe("banana");
   });
 });
 
@@ -32,8 +33,7 @@ describe("Search button", () => {
 
       const { queryByTestId } = render(<SearchForm searchRecipesForm={requestSearch} />);
 
-      //@ts-ignore
-      fireEvent.click(queryByTestId("search-button"));
+      fireEvent.click(queryByTestId("search-button") as HTMLElement);
 
       expect(requestSearch).not.toHaveBeenCalled();
     });
@@ -42,15 +42,15 @@ describe("Search button", () => {
     it("trrigers search function", () => {
       const requestSearch = jest.fn();
 
-      const { queryByTestId, queryByPlaceholderText } = render(
+      const { queryByTestId, queryByLabelText } = render(
         <SearchForm searchRecipesForm={requestSearch} />
       );
 
-      const searchInput = queryByPlaceholderText("Search Recipe");
-      //@ts-ignore
+      const searchInput = queryByLabelText(/Search Recipe/i) as HTMLElement;
+
       fireEvent.change(searchInput, { target: { value: "banana" } });
-      //@ts-ignore
-      fireEvent.click(queryByTestId("search-button"));
+
+      fireEvent.click(queryByTestId("search-button") as HTMLElement);
 
       expect(requestSearch).toHaveBeenCalled();
     });
