@@ -4,7 +4,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { store } from "./stores/redux-store";
 
-test("renders search link", () => {
+it("renders search link", () => {
   const { getAllByText } = render(
     <Provider store={store}>
       <App />

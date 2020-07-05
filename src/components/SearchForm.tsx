@@ -32,7 +32,6 @@ const SearchForm: React.FC<ISearchFormProps> = ({ searchRecipesForm }) => {
           name="searchWord"
           id="outlined-basic"
           label="Search Recipe"
-          placeholder="Search Recipe"
           variant="filled"
           value={word}
           // helperText="Incorrect entry."

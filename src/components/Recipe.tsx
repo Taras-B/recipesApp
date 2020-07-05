@@ -12,7 +12,12 @@ const Recipe: React.FC<IRecipeProps> = ({ imageRecipe, label, ingredients }) => 
     <>
       <Card style={{ maxWidth: "600px" }}>
         <CardHeader title={label} />
-        <CardMedia style={{ height: "350px" }} image={imageRecipe} title={label} />
+        <CardMedia
+          style={{ height: "350px" }}
+          image={imageRecipe}
+          title={label}
+          data-testid="image-test"
+        />
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="ul">
             {ingredients.map((recipe: string, id: number) => (
