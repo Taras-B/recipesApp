@@ -5,7 +5,7 @@ import { fetchRecipeData } from '../../api/api'
 import { SEARCH_RECIPES } from '../types'
 import { appActions } from '../actions/appActions'
 
-function* workerSearchRecipes(action: any) {
+export function* workerSearchRecipes(action: any) {
   try {
     const data = yield call(fetchRecipeData, action.payload)
     if (data.count > 0) {
