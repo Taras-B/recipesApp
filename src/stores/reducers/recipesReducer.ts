@@ -1,11 +1,11 @@
-import { PUT_RECIPES } from "../types";
-import { ActionsType, RecipesDataT } from "../actions/recipesActions";
+import { PUT_RECIPES } from '../types'
+import { ActionsType, RecipesDataT } from '../actions/recipesActions'
 
 const initialState = {
-  fetchRecipes: [] as Array<RecipesDataT>,
-};
+  fetchRecipes: {} as RecipesDataT,
+}
 
-export type InitialStateRecipeT = typeof initialState;
+export type InitialStateRecipeT = typeof initialState
 
 export const recipesReducers = (
   state: InitialStateRecipeT = initialState,
@@ -13,8 +13,8 @@ export const recipesReducers = (
 ) => {
   switch (action.type) {
     case PUT_RECIPES:
-      return { ...state, fetchRecipes: action.payload };
+      return { ...state, fetchRecipes: action.payload }
     default:
-      return state;
+      return state
   }
-};
+}
