@@ -1,23 +1,23 @@
-import { FETCH_RECIPES } from "../types";
-import { takeEvery, call, put } from "redux-saga/effects";
+import { FETCH_RECIPES } from '../types'
+import { takeEvery, call, put } from 'redux-saga/effects'
 
-import { actions } from "../actions/recipesActions";
-import { fetchRecipeData } from "../../api/api";
-import { appActions } from "../actions/appActions";
+import { actions } from '../actions/recipesActions'
+import { fetchRecipeData } from '../../api/api'
+import { appActions } from '../actions/appActions'
 
 function* workerFetchRecipes() {
   try {
-    yield put(appActions.showLoader());
-    const { hits } = yield call(fetchRecipeData);
-    yield put(actions.putRecipes(hits));
-    yield put(appActions.hideLoader());
+    yield put(appActions.showLoader())
+    const { hits } = yield call(fetchRecipeData)
+    yield put(actions.putRecipes(hits))
+    yield put(appActions.hideLoader())
   } catch (e) {
     // TODO: Show Alert
-    // * Hide Alet
-    console.log(e);
+    // * Hide Alert
+    console.log(e)
   }
 }
 
 export function* sagaFetchWatcher() {
-  yield takeEvery(FETCH_RECIPES, workerFetchRecipes);
+  yield takeEvery(FETCH_RECIPES, workerFetchRecipes)
 }

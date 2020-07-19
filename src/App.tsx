@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import styled, { keyframes } from "styled-components";
-import { Recipes } from "./components/Recipes";
-import { actions } from "./stores/actions/recipesActions";
+import "./App.css";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import { actions } from "./stores/actions/recipesActions";
 import SearchForm from "./components/SearchForm";
+
 import { AppRootState } from "./stores/redux-store";
 
 import { Alert } from "@material-ui/lab";
+import {Recipes} from "./components/Recipes";
+
 
 function App() {
   const dispatch = useDispatch();

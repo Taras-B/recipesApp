@@ -1,8 +1,8 @@
-import { fork } from "redux-saga/effects";
-import { sagaFetchWatcher } from "./recipesSaga";
-import { sagaSearchhWatcher } from "./searchRecipesSaga";
+import { fork } from 'redux-saga/effects'
+import { sagaFetchWatcher } from './recipesSaga'
+import { sagaSearchWatcher } from './searchRecipesSaga'
 
 export function* rootSaga() {
-  yield fork(sagaFetchWatcher);
-  yield fork(sagaSearchhWatcher);
+  yield fork(sagaFetchWatcher)
+  yield fork(sagaSearchWatcher)
 }
